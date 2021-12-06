@@ -63,5 +63,5 @@
 
 (defn solve-all
   [day fn-load-input fn-solve-01 fn-solve-02]
-  (println "day" day "1/2:" (time (fn-solve-01 (fn-load-input (input-file day)))))
-  (println "day" day "2/2:" (time  (fn-solve-02 (fn-load-input (input-file day))))))
+  (println "day" day "1/2:" (fn-solve-01 (fn-load-input (input-file day))))
+  (println "day" day "2/2:" (fn-solve-02 (fn-load-input (input-file day)))))
