@@ -66,7 +66,16 @@
   [file]
    (str/split (load-input-raw file) #"\n\n"))
 
-(defn solve-all
-  [day fn-load-input fn-solve-01 fn-solve-02]
-  (println "day" day "1/2:" (fn-solve-01 (fn-load-input (input-file day))))
-  (println "day" day "2/2:" (fn-solve-02 (fn-load-input (input-file day)))))
+(defn display-answer [day part fn-load-input fn-solve]
+  (let [ts (. System (nanoTime))
+        answer (->> day
+                    (input-file)
+                    (fn-load-input)
+                    (fn-solve))
+        elapsed (quot (- (. System (nanoTime)) ts) 1000)]
+    (printf "day %s %d/2: \033[1;37m%15d\033[0m (%dms)\n" day part answer elapsed)))
+
+(defn solve-all [day fn-load-input fn-solve-01 fn-solve-02]
+  (display-answer day 1 fn-load-input fn-solve-01)
+  (display-answer day 2 fn-load-input fn-solve-02)
+  (println))
