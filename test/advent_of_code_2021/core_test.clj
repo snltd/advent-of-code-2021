@@ -18,6 +18,11 @@
     (is (= [123 456 789]
            (load-input-ints "test/advent_of_code_2021/resources/data")))))
 
+(deftest load-input-csv-ints-test
+  (testing "should return a list of ints"
+    (is (= [16 1 2 0 4 2 7 1 2 14]
+           (load-input-csv-ints (sample-input-file "07"))))))
+
 (deftest strings->ints-test
   (testing "should return a list of ints"
     (is (= [123 456 789]

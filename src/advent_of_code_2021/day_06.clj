@@ -2,7 +2,7 @@
   (:require [advent-of-code-2021.core :as core]))
 
 (defn load-input [file]
-  (frequencies (core/int-fields (core/load-input-raw file), #",")))
+  (frequencies (core/load-input-csv-ints file)))
 
 (defn modify-fish-states [states]
   { 0 (get states 1 0)

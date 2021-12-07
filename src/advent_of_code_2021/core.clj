@@ -14,25 +14,6 @@
   [lines]
   (map #(Integer/parseInt %) lines))
 
-(defn load-input-raw
-  "the given file as a single string"
-  [file]
-  (slurp file))
-
-(defn load-input-lines
-  "the given file as a seq of lines"
-  [file]
-  (str/split-lines (load-input-raw file)))
-
-(defn load-input-ints
-  "the given file as a seq of integers"
-  [file]
-  (strings->ints (load-input-lines file)))
-
-(defn load-input-blocks
-  [file]
-   (str/split (load-input-raw file) #"\n\n"))
-
 (defn fields
   "break a regex-delimeter string into an array of fields"
   ([string]
@@ -60,6 +41,30 @@
    (str sample-input-dir "/" day))
   ([day part]
    (str sample-input-dir "/" day part)))
+
+(defn load-input-raw
+  "the given file as a single string"
+  [file]
+  (slurp file))
+
+(defn load-input-lines
+  "the given file as a seq of lines"
+  [file]
+  (str/split-lines (load-input-raw file)))
+
+(defn load-input-ints
+  "the given file as a seq of integers"
+  [file]
+  (strings->ints (load-input-lines file)))
+
+(defn load-input-csv-ints
+  "the given file as a seq of integers, when it's a comma-separated list"
+  [file]
+  (int-fields (load-input-raw file), #","))
+
+(defn load-input-blocks
+  [file]
+   (str/split (load-input-raw file) #"\n\n"))
 
 (defn solve-all
   [day fn-load-input fn-solve-01 fn-solve-02]
